@@ -7,7 +7,7 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129072264-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+        function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
         gtag('config', 'UA-129072264-1');
     </script>
@@ -22,7 +22,8 @@
 </head>
 
 <body>
-    
+
+    <!--Top bar-->
     <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
         <button class="menu-icon" type="button" data-toggle="main-menu"></button>
     </div>
@@ -40,14 +41,16 @@
             <div class="top-bar-right">
                 <ul class="dropdown menu" data-dropdown-menu>
                     <!--<li><a href="#">Novosti</a></li>-->
-                    <li><a href="#about">O projektu</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+                    <li><a href="index.html#about">Pitanja i odgovori</a></li>
+                    <li><a href="details.html">Tehnikalije</a></li>
+                    <li><a href="contact.html">Kontakt</a></li>
                 </ul>
             </div>
         </div>
     </div>
+    <!--Top bar end-->
 
-
+    <!--Search container-->
     <div class="grid-container" id="search-container">
         <div class="grid-x grid-margin-x align-center">
             <div class="medium-9 large-6 cell text-center">
@@ -82,75 +85,130 @@
             </div>
         </div>
     </div>
+    <!--Search container end-->
 
-    <div class="grid-container" style="padding-top:30%">
+    <!--Što je croapi?-->
+    <div class="grid-container" style="padding-top:30%; padding-bottom: 30%;">
         <div class="grid-x grid-margin-x align-center">
             <div class="medium-8 large-7 cell">
-                <article id="about" style="padding-top:5%">
+                <article id="about" style="padding-top:5%;">
                     <section>
-                        <h1 style="padding-top:5%;">Što je croapi?</h1>
+                        <h2 style="padding-top:5%;">Što je croapi?</h2>
 
                         <p class="lead">
-                            <a href="index.html">Croapi</a> je skup online alata kojima je cilj prikazati neke od
-                            brojnih
-                            mogućnosti primjene strojnog učenja u području obrade prirodnog jezika, pri čemu je
-                            naglasak stavljen na hrvatski jezik.
+                            Croapi verzije beta 1 je matematički model koji automatski
+                            određuje vrste riječi u rečenici na hrvatskom jeziku.
                         </p>
+                        <p>
+                            Gramatika hrvatskog jezika definira <strong>deset vrsta riječi</strong> koje se prema
+                            sastavu ili obliku dijele na promjenjive i nepromjenjive (Težak i Babić, 2005.).
+                        </p>
+                        <h2>Promjenjive vrste riječi</h2>
+                        <ul>
+                            <li>
+                                <strong>IMENICE</strong> su riječi kojima imenujemo bića stvari i pojave,
+                                mijenjaju se po padežima i imaju stalan rod
+                                <i>(čovjek, biljka, riba, staklo, kuća, grad, voda, vatra, jezik, riječ...)</i>
+                            </li>
+
+                            <li>
+                                <strong>GLAGOLI</strong> su riječi koje izriču radnju, stanje i zbivanje
+                                te se sprežu ili konjugiraju izričući osobu i vrijeme ili način radnje, stanja ili
+                                zbivanja
+                                <i>(plesati, čitati, stvarati, stajati, sjediti, cvjetati, kišiti...)</i>
+                            </li>
+
+                            <li>
+                                <strong>PRIDJEVI</strong> su riječi koje pobliže označuju imenice, izriču
+                                različita obilježja bića, stvari i pojava te odgovaraju na pitanja koji?,
+                                čiji?, kakav?
+                                <i>(zelen, crven, malen, debeo, blizak, složen, susjedov, novi, hrvatski, zlatan...)</i>
+                            </li>
+
+                            <li><strong>ZAMJENICE</strong> su riječi koje zamjenjuju druge riječi, najčešće
+                                imenice i pridjeve
+                                <i>(ja, ti, moj, njezin, sebe, sebi, svoj, tko, što, nitko, nešto...)</i>
+                            </li>
+
+                            <li>
+                                <strong>BROJEVI</strong> izriču koliko je čega (glavni brojevi) ili koje je što
+                                po redu (redni brojevi) i dolaze uz imenice
+                                <i>(jedan, dva, devet, dvanaest, sto, prvi, drugi, četrnaesti...)</i>
+                            </li>
+                        </ul>
+
+                        <h2>Nepromjenjive vrste riječi</h2>
+                        <ul>
+                            <li>
+                                <strong>PRILOZI</strong> su nepromjenjive riječi koje se najčešće dodaju glagolima za
+                                oznaku mjesta, vremena,
+                                načina, uzroka, i drugih okolnosti
+                                <i>(gdje, kamo, ovdje, onamo, svuda, sada, sutra, jučer, ljetos, kako, zašto, stoga...)</i>
+                            </li>
+
+                            <li>
+                                <strong>PRIJEDLOZI</strong> su nepromjenjive pomoćne riječi koje izriču međusobne
+                                odnose među stvarima i radnjama u rečenici
+                                <i>(u, na, od, do, iz, iza, o, po, pod, nad, uz, kod, oko, zbog, radi...)</i>
+                            </li>
+
+                            <li>
+                                <strong>VEZNICI</strong> su nepromjenjive pomoćne gramatičke riječi kojima se
+                                povezuju riječi u rečenici ili surečenice u složenim rečenicama
+                                <i>(i, pa, te, ni, niti, a, ali, nego, no, već, ili, čim, da, dakle...)</i>
+                            </li>
+
+                            <li>
+                                <strong>USKLICI</strong> su nepromjenjive riječi koje služe za izricanje osjećaja,
+                                duševnih raspoloženja, za dozive i poticaje ili za oponašanje prirodnih zvukova
+                                <i>(ah, eh, ih, oh, uh, hej, oho, jao, iš, šic, hop...)</i>
+                            </li>
+
+                            <li>
+                                <strong>ČESTICE</strong> su nepromjenjive riječi koje služe za oblikovanje ili
+                                preoblikovanje
+                                rečeničnoga ustrojstva, za davanje drugačijega značenja pojedinim riječima ili za
+                                isticanje govornikova stava prema rečeničnom sadržaju
+                                <i>(zar, li, da, ne, evo, eto, eno, neka, na...)</i>
+                            </li>
+                        </ul>
 
                         <p>
-                            <strong>Strojno učenje</strong> (engl. <a href="https://en.wikipedia.org/wiki/Machine_learning"
-                                target="_blank" rel="noopener noreferrer">machine learning</a>) je grana računarske
-                            znanosti i umjetne inteligencije koja se bavi različitim statističkim i algoritamskim
-                            postupcima kako bi programirala računala da uče iz podataka.
-                            <sup>
-                                [<a href="http://shop.oreilly.com/product/0636920052289.do" target="_blank" rel="noopener noreferrer">izvor</a>]
-                            </sup>
-                            Za razliku od klasičnog programiranja eksplicitnim naredbama (npr. <code>if</code>), pomoću
-                            strojnog učenja računala automatski pronalaze pravila koja
-                            kasnije koriste kod zaključivanja, pri čemu je potreban skup podataka nad kojima će učiti.
-                            <a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener noreferrer">Duboko
-                                učenje</a>
-                            je posebna vrsta strojnog učenja koja se bavi različim vrstama (dubokih)
-                            <a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank" rel="noopener noreferrer">neuronskih
-                                mreža</a>.
+                            Osim standardnih vrsta riječi, croapi označava kratice i interpunkcijske
+                            znakove. Riječi koje nisu uspjele biti prepoznate svrstava u kategoriju ostalo.
                         </p>
 
-                        <p>
-                            <strong>Obrada prirodnog jezika</strong> (engl. <a href="https://en.wikipedia.org/wiki/Natural_language_processing"
-                                target="_blank" rel="noopener noreferrer">natural language processing</a> (NLP))
-                            također je dio računarske znanosti koji se bavi proučavanjem interakcije između računala i
-                            prirodnog ljudskog jezika.
-                            Neki od zadataka kojima se ovo područje bavi uključuju računalno razumijevanje sintakse i
-                            semantike prirodnog jezika (značenja riječi, rečenica i tekstova), otkrivanje vrsta riječi,
-                            razvrstavanje tekstova u različite kategorije, otkrivanje imenovanih entiteta u tekstu,
-                            strojno prevođenje, pretvaranje ljudskog govora u tekst i obrnuto,
-                            odgovaranje na pitanja i mnogi drugi. Pritom se često koristi strojno učenje.
-                        </p>
                     </section>
 
                     <section>
-                        <h2 id="croapi-beta-1">croapi beta 1</h2>
+                        <h2>Komu i čemu je croapi namijenjen?</h2>
                         <p>
-                            Croapi verzije beta 1 je matematički model koji strojnim učenjem određuje vrste riječi u rečenici (engl. <a
-                                href="https://en.wikipedia.org/wiki/Part-of-speech_tagging" target="_blank" rel="noopener noreferrer">part-of-speech
-                                tagging</a>).
-                            Podržane vrste riječi su imenice, glagoli, pridjevi, zamjenice, brojevi, prilozi,
-                            prijedlozi, veznici, usklici i čestice,
-                            a pridodane su kratice i interpunkcijski znakovi. Riječi koje nisu uspjele biti prepoznate
-                            svrstane su u kategoriju ostalo.
+                            Croapi je zamišljen kao pomoć tijekom učenja i vježbanja vrsta riječi u svim
+                            razredima osnovnih pa i srednjih škola te svima koji žele provjeriti zadatke
+                            takve vrste. Aplikacija može služiti kao vježba s rješenjima,
+                            no treba imati na umu da ni računala nisu savršena pa je moguće da ponekad
+                            pogriješe.
+                        </p>
+                        <p>Ukoliko će postojati interes, croapi će biti dalje usavršavan 
+                            kako bi što točnije prepoznavao i podvrste riječi (npr. opće i vlastite imenice,
+                            opisne i gradivne pridjeve, nesvršene i svršene glagole, osobne, posvojne,
+                            neodređene zamjenice itd.), ali i određivao rod, broj, padež,
+                            lice i druge gramatičke kategorije.
                         </p>
 
-                        <h3>Kolika je točnost modela?</h3>
+                        <h2>Kolika je točnost modela?</h2>
                         <p>
-                            Model u prosjeku točno otkriva vrste riječi u <strong>97,45%</strong> slučajeva.
+                            Croapi u prosjeku točno otkriva vrste riječi u <strong>97,45%</strong> slučajeva.
                             Točnost modela nad riječima koje nikad nije vidio tijekom učenja trenutno iznosi
                             <strong>92%</strong>.
-                            U budućnosti će se model poboljšavati kako bi točnost bila veća.
+                            U budućnosti će se model poboljšavati kako bi točnost bila veća. Detaljnije performanse
+                            za svaku pojedinu vrstu riječi dostupne su
+                            <a href="details.html" target="_blank" rel="noopener noreferrer">ovdje</a>.
                         </p>
 
-                        <h3>Koristi li model neku vrstu rječnika?</h3>
+                        <h2>Koristi li model neku vrstu rječnika?</h2>
                         <p>
-                            Ne u klasičnom smislu. Model je tijekom faze treniranja "vidio" razne riječi iz ograničenog
+                            Ne u klasičnom smislu. Model je tijekom faze učenja "vidio" razne riječi iz ograničenog
                             skupa tekstova u kojima su vrste riječi unaprijed označene pa u tom smislu možemo govoriti
                             o
                             rječniku. Međutim, broj jedinstvenih oblika riječi koje je model tijekom učenja imao
@@ -159,82 +217,13 @@
                         </p>
                         <p>
                             Riječi nisu bile jedine ulazne značajke iz kojih je model učio. Ono što je model naučio
-                            algoritmom strojnog učenja su matematička pravila pomoću kojih pokušava predvidjeti vrstu riječi neovisno o tome
-                            nalazi li se ona u tekstovima za učenje ili ne.
-                        </p>
-
-                        <h3>Tehnički detalji</h3>
-                        <h4>Skup podataka</h4>
-                        <p>
-                            Skup podataka korišten za učenje modela dostupan je na poveznici:
-                            <a href="https://www.clarin.si/repository/xmlui/handle/11356/1183" target="_blank" rel="noopener noreferrer">
-                                Ljubešić, Nikola; Agić, Željko; Klubička, Filip; Batanović, Vuk and Erjavec, Tomaž,
-                                2018,
-                                <i>Training corpus hr500k 1.0</i>, Slovenian language resource repository CLARIN.SI
-                            </a>
-                        </p>
-
-                        <p>
-                            Skup se sastoji od 24794 rečenica sa označenim vrstama riječi. Prije treniranja je
-                            nasumično promiješan i podijeljen na skup za treniranje i skup za testiranje u
-                            omjeru 80:20%.
-                        </p>
-
-                        <h4>Značajke</h4>
-                        <p>Uz riječi, korištene su razne ručno i poluručno kreirane značajke kao što su znakovni
-                            n-grami, prefiksi, sufiksi i druge (ukupno 24).</p>
-
-                        <h4>Model</h4>
-                        <p>Trenutna verzija koristi samostalno trenirani <a href="https://en.wikipedia.org/wiki/Conditional_random_field"
-                                target="_blank" rel="noopener noreferrer">CRF</a> model pomoću unakrsne validacije na 5
-                            preklopa skupa za treniranje. Duboki modeli su trenutno u eksperimentalnoj fazi.</p>
-
-                        <h4>Performanse</h4>
-                        <p>
-                            U nastavku slijede rezultati evaluacije na 5 validacijskih preklopa skupa za treniranje
-                            i skupu za testiranje. Kratica OOV (engl. out of vocabulary) označava tokene (riječi) koji
-                            nisu bili prisutni ni u jednoj rečenici skupa za testiranje. Mjere su izračunate na razini
-                            tokena.
-                        </p>
-                        <h5>Skup za treniranje</h5>
-                        <p>
-                            Na slikama je prikazana točnost na validacijskim preklopima skupa za treniranje,
-                            <i>precision</i>, <i>recall</i> i F1 makro mjere za pojedine vrste riječi, F1 mikro mjera
-                            nad združenim validacijskim predikcijama i uprosječene točnosti nad svim i OOV tokenima
-                            iz validacijskih preklopa:
-                        </p>
-                        <img src="img/beta_1/train_set_1.png" alt="Performanse otkrivanja vrsta riječi na preklopima za treniranje.">
-                        <img src="img/beta_1/train_set_2.png" alt="Klasifikacijsko izvješće otkrivanja vrsta riječi na preklopima za treniranje.">
-
-                        <h5 style="padding-top:5%;">Skup za testiranje</h5>
-                        <p>
-                            Skup za testiranje podijeljen je na 10 preklopa kako bi se mogli izračunati intervali
-                            pouzdanosti uz prethodnu provjeru normalnosti distribucije mjerenih rezultata.
-                            Na svakom preklopu napravljena je predikcija, a nad združenim predikcijama prikazane su
-                            <i>precision</i>, <i>recall</i> i F1 makro mjere za pojedinu vrstu riječi, F1 mikro mjera i
-                            točnost.
-                        </p>
-                        <img src="img/beta_1/test_set_1.png" alt="Klasifikacijsko izvješće otkrivanja vrsta riječi na preklopima za testiranje.">
-                        <p style="padding-top:5%;">
-                            95%-tni intervali pouzdanosti za F1 mikro mjeru (nedostaje ispis prvog naslova u slici),
-                            točnost i točnost nad riječima izvan skupa za treniranje:
-                        </p>
-                        <img src="img/beta_1/test_set_2.png" alt="Intervali pouzdanosti otkrivanja vrsta riječi na preklopima za testiranje.">
-                    </section>
-
-                    <section id="contact" style="padding-bottom:45%;">
-                        <h2 style="padding-top:5%;">Kontakt</h2>
-                        <p>
-                            Za sva pitanja, prijedloge, komentare i mogućnosti korištenja prilagođenog
-                            API-ja slobodno se obratite na
-                            <a href="mailto:milan.pavlovic711@gmail.com" target="_top">milan.pavlovic711@gmail.com</a>
-                            ili na <a href="https://www.linkedin.com/in/pavlovic-milan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.
+                            algoritmom strojnog učenja su matematička pravila pomoću kojih pokušava predvidjeti vrstu
+                            riječi neovisno o tome
+                            nalazi li se ona u tekstovima iz kojih je učio ili ne.
                         </p>
                     </section>
                 </article>
             </div>
-
-
         </div>
     </div>
 

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129072264-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-129072264-1');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Tehnički detalji croapi modela.">
+    <title>Tehnički detalji - croapi</title>
+
+    <link rel="stylesheet" href="css/foundation.min.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body>
+    <!--Top bar start-->
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+        <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+    </div>
+
+    <div data-sticky-container>
+        <div class="top-bar" id="main-menu" data-sticky data-options="marginTop:0;" style="width:100%">
+            <div class="top-bar-left">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <li class="menu-text">
+                        <a href="index.html" style="padding:0;">croapi</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="top-bar-right">
+                <ul class="dropdown menu" data-dropdown-menu>
+                    <!--<li><a href="#">Novosti</a></li>-->
+                    <li><a href="index.html#about">Pitanja i odgovori</a></li>
+                    <li><a href="details.html">Tehnikalije</a></li>
+                    <li><a href="contact.html">Kontakt</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Top bar end-->
+
+    <div class="grid-container">
+            <div class="grid-x grid-margin-x align-center">
+                <div class="medium-8 large-7 cell">
+                    <article id="about" style="padding-bottom: 30%;">
+                        <section>
+                            <h1 style="padding-top:5%;">Što je temelj croapija?</h1>
+    
+                            <p class="lead">
+                                <a href="index.html">Croapi</a> se temelji na primjeni strojnog učenja u području obrade prirodnog jezika, pri čemu je
+                                naglasak stavljen na hrvatski jezik.
+                            </p>
+    
+                            <p>
+                                <strong>Strojno učenje</strong> (engl. <a href="https://en.wikipedia.org/wiki/Machine_learning"
+                                    target="_blank" rel="noopener noreferrer">machine learning</a>) je grana računarske
+                                znanosti i umjetne inteligencije koja se bavi različitim statističkim i algoritamskim
+                                postupcima kako bi programirala računala da uče iz podataka.
+                                <sup>
+                                    [<a href="http://shop.oreilly.com/product/0636920052289.do" target="_blank" rel="noopener noreferrer">izvor</a>]
+                                </sup>
+                                Za razliku od klasičnog programiranja eksplicitnim naredbama (npr. <code>if</code>), pomoću
+                                strojnog učenja računala automatski pronalaze pravila koja
+                                kasnije koriste kod zaključivanja, pri čemu je potreban skup podataka nad kojima će učiti.
+                                <a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" rel="noopener noreferrer">Duboko
+                                    učenje</a>
+                                je posebna vrsta strojnog učenja koja se bavi različim vrstama (dubokih)
+                                <a href="https://en.wikipedia.org/wiki/Artificial_neural_network" target="_blank" rel="noopener noreferrer">neuronskih
+                                    mreža</a>.
+                            </p>
+    
+                            <p>
+                                <strong>Obrada prirodnog jezika</strong> (engl. <a href="https://en.wikipedia.org/wiki/Natural_language_processing"
+                                    target="_blank" rel="noopener noreferrer">natural language processing</a> (NLP))
+                                također je dio računarske znanosti koji se bavi proučavanjem interakcije između računala i
+                                prirodnog ljudskog jezika.
+                                Neki od zadataka kojima se ovo područje bavi uključuju računalno razumijevanje sintakse i
+                                semantike prirodnog jezika (značenja riječi, rečenica i tekstova), otkrivanje vrsta riječi,
+                                razvrstavanje tekstova u različite kategorije, otkrivanje imenovanih entiteta u tekstu,
+                                strojno prevođenje, pretvaranje ljudskog govora u tekst i obrnuto,
+                                odgovaranje na pitanja i mnogi drugi. Pritom se često koristi strojno učenje.
+                            </p>
+                        </section>
+                        
+                        <section>
+                            <h3>Tehnički detalji</h3>
+                            <h4>Skup podataka</h4>
+                            <p>
+                                Skup podataka korišten za učenje modela dostupan je na poveznici:
+                                <a href="https://www.clarin.si/repository/xmlui/handle/11356/1183" target="_blank" rel="noopener noreferrer">
+                                    Ljubešić, Nikola; Agić, Željko; Klubička, Filip; Batanović, Vuk and Erjavec, Tomaž,
+                                    2018,
+                                    <i>Training corpus hr500k 1.0</i>, Slovenian language resource repository CLARIN.SI
+                                </a>
+                            </p>
+    
+                            <p>
+                                Skup se sastoji od 24794 rečenica sa označenim vrstama riječi. Prije treniranja je
+                                nasumično promiješan i podijeljen na skup za treniranje i skup za testiranje u
+                                omjeru 80:20%.
+                            </p>
+    
+                            <h4>Značajke</h4>
+                            <p>Uz riječi, korištene su razne ručno i poluručno kreirane značajke kao što su znakovni
+                                n-grami, prefiksi, sufiksi i druge (ukupno 24).</p>
+    
+                            <h4>Model</h4>
+                            <p>Trenutna verzija koristi samostalno trenirani <a href="https://en.wikipedia.org/wiki/Conditional_random_field"
+                                    target="_blank" rel="noopener noreferrer">CRF</a> model pomoću unakrsne validacije na 5
+                                preklopa skupa za treniranje. Duboki modeli su trenutno u eksperimentalnoj fazi.</p>
+    
+                            <h4>Performanse</h4>
+                            <p>
+                                U nastavku slijede rezultati evaluacije na 5 validacijskih preklopa skupa za treniranje
+                                i skupu za testiranje. Kratica OOV (engl. out of vocabulary) označava tokene (riječi) koji
+                                nisu bili prisutni ni u jednoj rečenici skupa za testiranje. Mjere su izračunate na razini
+                                tokena.
+                            </p>
+                            <h5>Skup za treniranje</h5>
+                            <p>
+                                Na slikama je prikazana točnost na validacijskim preklopima skupa za treniranje,
+                                <i>precision</i>, <i>recall</i> i F1 makro mjere za pojedine vrste riječi, F1 mikro mjera
+                                nad združenim validacijskim predikcijama i uprosječene točnosti nad svim i OOV tokenima
+                                iz validacijskih preklopa:
+                            </p>
+                            <img src="img/beta_1/train_set_1.png" alt="Performanse otkrivanja vrsta riječi na preklopima za treniranje.">
+                            <img src="img/beta_1/train_set_2.png" alt="Klasifikacijsko izvješće otkrivanja vrsta riječi na preklopima za treniranje.">
+    
+                            <h5 style="padding-top:5%;">Skup za testiranje</h5>
+                            <p>
+                                Skup za testiranje podijeljen je na 10 preklopa kako bi se mogli izračunati intervali
+                                pouzdanosti uz prethodnu provjeru normalnosti distribucije mjerenih rezultata.
+                                Na svakom preklopu napravljena je predikcija, a nad združenim predikcijama prikazane su
+                                <i>precision</i>, <i>recall</i> i F1 makro mjere za pojedinu vrstu riječi, F1 mikro mjera i
+                                točnost.
+                            </p>
+                            <img src="img/beta_1/test_set_1.png" alt="Klasifikacijsko izvješće otkrivanja vrsta riječi na preklopima za testiranje.">
+                            <p style="padding-top:5%;">
+                                95%-tni intervali pouzdanosti za F1 mikro mjeru (nedostaje ispis prvog naslova u slici),
+                                točnost i točnost nad riječima izvan skupa za treniranje:
+                            </p>
+                            <img src="img/beta_1/test_set_2.png" alt="Intervali pouzdanosti otkrivanja vrsta riječi na preklopima za testiranje.">
+                        </section>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+        $(document).foundation();
+    </script>
+</body>
