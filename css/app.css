@@ -1,0 +1,81 @@
+.input-group-rounded .input-group-field {
+    border-radius: 5000px 5000px 5000px 5000px;
+}
+
+.input-group-rounded .input-group-button .button {
+    border-radius: 0 5000px 5000px 0;
+  }
+
+  h1 sup {
+    font-size: .3em;
+    font-style: italic;
+    vertical-align: super;
+  }
+
+  /* POS tags coloring */
+
+.displacy-token[data-tag="IMENICA"] {
+    color: #0a0a0a;
+}
+
+.displacy-token[data-tag="GLAGOL"] {
+    color: #1779ba;
+}
+
+.displacy-token[data-tag="PRIDJEV"] {
+    color: #009933;
+}
+
+.displacy-token[data-tag="ZAMJENICA"] {
+    color: #bb0073;
+}
+
+.displacy-token[data-tag="BROJ"] {
+    color: #4800bb;
+}
+
+.displacy-token[data-tag="PRILOG"] {
+    color: #bb5400;
+}
+
+.displacy-token[data-tag="PRIJEDLOG"] {
+    color: #657c00;
+}
+
+.displacy-token[data-tag="VEZNIK"] {
+    color: #000cbb;
+}
+
+.displacy-token[data-tag="ČESTICA"] {
+    color: #636060;
+}
+
+.displacy-token[data-tag="USKLIK"] {
+    color: #00818a;
+}
+
+.displacy-token[data-tag="KRATICA"] {
+    color: #800000;
+}
+
+.displacy-token[data-tag="OSTALO"] {
+    color: #aa9901;
+}
+
+.displacy-token[data-tag="INTERPUNKCIJA"] {
+    color: #c91b1b;
+}
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+}
+
+#search-container {
+    padding-top: 7%;
+}
+
+@media only screen and (max-width: 420px) {
+    #search-container {
+        padding-top: 10%;
+    }
+}
