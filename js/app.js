@@ -40,9 +40,49 @@ function doPOSTag() {
     return false; // very important
 };
 
+function doPOSTagNew() {
+
+    inputSentence = $('#sentenceInput').val().trim();
+
+    if (inputSentence.length <= 0) {
+        return false;
+    }
+
+    $('#displacyLoader').show();
+    
+    $.ajax({
+        type: "POST",
+        url: "https://scentalytics.com/croapi/get-predictions",
+        data: JSON.stringify({
+            "sentence": inputSentence
+        }),
+        contentType: "application/json",
+        dataType: "json",
+        headers: {
+            'X-Api-Key': 'TwWmLpW0Xj9Kkheo5UpHB6c01ZR7RxAd3BZyfLmS'
+        },
+        success: function(data, textStatus, jqXHR) {
+            parse = data['predictions']
+            displacy.render(parse, {
+                color: '#ff0000'
+            });
+            $('#sentenceInput').blur();
+            $('#scrollInfo').show();
+        },
+        error: function() {
+            alert('Došlo je do pogreške. Molimo pokušajte ponovo.');
+        },
+        complete: function() {
+            $('#displacyLoader').hide();
+        }
+    });
+    return false; // very important
+};
+
 //$('#postag').click(doPOSTag);
 
 $('#displacyLoader').hide();
 $('#scrollInfo').hide();
 $(document).foundation();
-$('#inputForm').on('submit', doPOSTag);
+//$('#inputForm').on('submit', doPOSTag);
+$('#inputForm').on('submit', doPOSTagNew);

@@ -68,7 +68,7 @@ class displaCy {
         this.offsetY = this.distance / 2 * this.highestLevel;
 
         const width = this.offsetX + parse.words.length * this.distance;
-        const height = this.offsetY + 2 * this.wordSpacing;
+        const height = this.offsetY + 4 * this.wordSpacing;
 
         this.container.innerHTML = '';
         this.container.appendChild(this._el('svg', {
@@ -94,37 +94,44 @@ class displaCy {
     }
 
     renderWords(words) {
-        return (words.map(( { text, tag, data = [] }, i) => this._el('text', {
-            classnames: [ 'displacy-token' ],
-            attributes: [
-                ['fill', 'currentColor'],
-                ['data-tag', tag],
-                ['text-anchor', 'middle'],
-                ['y', this.offsetY + this.wordSpacing],
-                ...data.map(([attr, value]) => (['data-' + attr.replace(' ', '-'), value]))
-            ],
-            children: [
-                this._el('tspan', {
-                    classnames: [ 'displacy-word' ],
-                    attributes: [
-                        ['x', this.offsetX + i * this.distance],
-                        ['fill', 'currentColor'],
-                        ['data-tag', tag]
-                    ],
-                    text: text
-                }),
-                this._el('tspan', {
+        return (words.map(({ text, tag, data = [] }, i) => {
+            const tagParts = tag.split('\n');
+            const tspans = tagParts.map((part, index) => {
+                return this._el('tspan', {
                     classnames: [ 'displacy-tag' ],
                     attributes: [
                         ['x', this.offsetX + i * this.distance],
-                        ['dy', '2em'],
+                        ['dy', '1.8em'],
                         ['fill', 'currentColor'],
-                        ['data-tag', tag]
+                        ['data-tag', tagParts[0]]
                     ],
-                    text: tag
-                })
-            ]
-        })));
+                    text: part
+                });
+            });
+    
+            return this._el('text', {
+                classnames: [ 'displacy-token' ],
+                attributes: [
+                    ['fill', 'currentColor'],
+                    ['data-tag', tagParts[0]],
+                    ['text-anchor', 'middle'],
+                    ['y', this.offsetY + this.wordSpacing],
+                    ...data.map(([attr, value]) => (['data-' + attr.replace(' ', '-'), value]))
+                ],
+                children: [
+                    this._el('tspan', {
+                        classnames: [ 'displacy-word' ],
+                        attributes: [
+                            ['x', this.offsetX + i * this.distance],
+                            ['fill', 'currentColor'],
+                            ['data-tag', tagParts[0]]
+                        ],
+                        text: text
+                    }),
+                    ...tspans
+                ]
+            });
+        }));
     }
 
     renderArrows(arcs) {
