@@ -31,7 +31,7 @@
 }
 
 .displacy-token[data-tag="BROJ"] {
-    color: #4800bb;
+    color: #8c00bb;
 }
 
 .displacy-token[data-tag="PRILOG"] {

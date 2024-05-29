@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-
-<html lang="hr">
-
-<head>
+<html lang="hr" data-bs-theme="light">
+  <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129072264-2"></script>
     <script>
@@ -13,238 +11,457 @@
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8134106860668917" crossorigin="anonymous"></script>
-
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <meta name="description" content="Croapi automatski određuje vrste riječi u rečenici na hrvatskom jeziku. Unesite rečenicu i otkrijte imenice, glagole, pridjeve, zamjenice i ostale vrste riječi u njoj.">
-    <title>Vrste riječi - croapi</title>
 
-    <meta property='og:title' content="croapi - vrste riječi (Croatian PoS Tagger)"/>
+    <title>Vrste riječi | croapi</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Croapi automatski određuje vrste riječi u rečenici na hrvatskom jeziku. Unesite rečenicu i otkrijte imenice, glagole, pridjeve, zamjenice i ostale vrste riječi u njoj.">
+    <meta name="author" content="Milan Pavlović">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property='og:title' content="Vrste riječi | croapi"/>
     <meta property='og:image' content="https://croapi.github.io/vrste-rijeci/img/croapi.png"/>
     <meta property='og:description' content="Croapi automatski određuje vrste riječi u rečenici na hrvatskom jeziku. Unesite rečenicu i otkrijte imenice, glagole, pridjeve, zamjenice i ostale vrste riječi u njoj."/>
     <meta property='og:url' content="https://croapi.github.io/vrste-rijeci/"/>
 
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-        crossorigin="anonymous">
-</head>
+    <!-- Theme switcher (color modes) -->
+    <script src="assets/js/theme-switcher.js"></script>
 
-<body>
+    <!-- Favicon and Touch Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="mask-icon" href="assets/favicon/safari-pinned-tab.svg" color="#6366f1">
+    <link rel="shortcut icon" href="assets/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#080032">
+    <meta name="msapplication-config" content="assets/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 
-    <!--Top bar-->
-    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
-        <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+    <!-- Vendor Styles -->
+    <link rel="stylesheet" media="screen" href="assets/vendor/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" media="screen" href="assets/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" media="screen" href="assets/vendor/lightgallery/css/lightgallery-bundle.min.css">
+
+    <!-- Main Theme Styles + Bootstrap -->
+    <link rel="stylesheet" media="screen" href="assets/css/theme.min.css">
+
+    <!-- Page loading styles -->
+    <style>
+      .page-loading {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -webkit-transition: all .4s .2s ease-in-out;
+        transition: all .4s .2s ease-in-out;
+        background-color: #fff;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9999;
+      }
+      [data-bs-theme="dark"] .page-loading {
+        background-color: #0b0f19;
+      }
+      .page-loading.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .page-loading-inner {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        -webkit-transition: opacity .2s ease-in-out;
+        transition: opacity .2s ease-in-out;
+        opacity: 0;
+      }
+      .page-loading.active > .page-loading-inner {
+        opacity: 1;
+      }
+      .page-loading-inner > span {
+        display: block;
+        font-size: 1rem;
+        font-weight: normal;
+        color: #9397ad;
+      }
+      [data-bs-theme="dark"] .page-loading-inner > span {
+        color: #fff;
+        opacity: .6;
+      }
+      .page-spinner {
+        display: inline-block;
+        width: 2.75rem;
+        height: 2.75rem;
+        margin-bottom: .75rem;
+        vertical-align: text-bottom;
+        border: .15em solid #b4b7c9;
+        border-right-color: transparent;
+        border-radius: 50%;
+        -webkit-animation: spinner .75s linear infinite;
+        animation: spinner .75s linear infinite;
+      }
+      [data-bs-theme="dark"] .page-spinner {
+        border-color: rgba(255,255,255,.4);
+        border-right-color: transparent;
+      }
+      @-webkit-keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes spinner {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+    <!-- Page loading scripts -->
+    <script>
+      (function () {
+        window.onload = function () {
+          const preloader = document.querySelector('.page-loading');
+          preloader.classList.remove('active');
+          setTimeout(function () {
+            preloader.remove();
+          }, 1000);
+        };
+      })();
+    </script>
+  </head>
+
+
+  <!-- Body -->
+  <body>
+
+    <!-- Page loading spinner -->
+    <div class="page-loading active">
+      <div class="page-loading-inner">
+        <div class="page-spinner"></div><span>Učitavanje...</span>
+      </div>
     </div>
 
-    <div data-sticky-container>
-        <div class="top-bar" id="main-menu" data-sticky data-sticky-on="small" data-options="marginTop:0;" style="width:100%">
-            <div class="top-bar-left">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li class="menu-text">
-                        <a href="index.html" style="padding:0;">croapi</a>
-                    </li>
+
+    <!-- Page wrapper for sticky footer -->
+    <!-- Wraps everything except footer to push footer to the bottom of the page if there is little content -->
+    <main class="page-wrapper">
+
+
+      <!-- Navbar (without Hero section) -->
+      <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page -->
+      <header class="header navbar navbar-expand-lg navbar-dark bg-dark navbar-sticky">
+        <div class="container px-3">
+          <a href="index.html" class="navbar-brand pe-3">
+            croapi
+          </a>
+          <div id="navbarNav" class="offcanvas offcanvas-end bg-dark">
+            <div class="offcanvas-header border-bottom border-light">
+              <h5 class="offcanvas-title text-white">Izbornik</h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a href="#about" class="nav-link text-nowrap">Pitanja i odgovori</a>
+                </li>
+                <li class="nav-item">
+                  <a href="https://croapi.github.io/contact.html" class="nav-link">Kontakt</a>
+                </li>
+              </ul>
+            </div>        
+          </div>
+          <div class="pe-lg-1 ms-auto me-4" data-bs-theme="dark">
+            <div class="form-check form-switch mode-switch" data-bs-toggle="mode">
+              <input type="checkbox" class="form-check-input" id="theme-mode">
+              <label class="form-check-label d-none d-sm-block" for="theme-mode">Svijetlo</label>
+              <label class="form-check-label d-none d-sm-block" for="theme-mode">Tamno</label>
+            </div>
+          </div>
+          <button type="button" class="navbar-toggler" data-bs-toggle="offcanvas" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </header>
+
+
+      <!-- Hero -->
+      <section class="jarallax position-relative d-flex min-vh-100 bg-light mb-5 py-lg-5 pt-3" data-jarallax data-img-position="0% 100%" data-speed="0.5">
+        <div class="container position-relative zindex-5 pb-5 pt-lg-5">
+          <div class="row justify-content-center">
+            
+            <div class="col-lg-6 col-md-9 col-sm-12 order-md-1 order-2 d-flex flex-column justify-content-between mt-md-4 mt-sm-2 text-center">
+              
+              <div class="mb-md-5 pb-xl-5 mb-4">
+                
+                <!-- Welcome text -->
+                <h1 class="display-4 mb-3" style="font-weight: 400;">
+                  <span style="color:#1779ba;">Otkrijte</span> vrste riječi<span style="color:#c91b1b">.</span>
+                </h1>
+
+                <!-- Search form -->
+                <form id="inputForm">
+                  <div class="mb-2">
+                    <input class="form-control form-control-lg rounded-pill" type="search" id="sentenceInput" placeholder="Upišite rečenicu...">
+                  </div>
+                </form>
+                
+                <!-- Pre-instructions text -->
+                <div>
+                  <p class="mb-3">Preporuča se korištenje velikog početnog slova i interpunkcije na kraju rečenice.</p>
+                </div>
+
+                <!-- Accent spinner -->
+                <div class="spinner-border text-accent mt-4" role="status" id="displacyLoader" style="display: none;">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+
+                <!--Predictions wrapper & container-->
+                <div style="overflow-x: scroll; display: none;" id="predictions-wrapper">
+                  <div class="row flex-nowrap" id="predictions-body"> <!-- flex-nowrap is a key class to alighn preds all in one line-->
+                    
+                  </div>
+                </div>
+                
+                <!-- Post-instructions text -->
+                <div class="mt-2" id="scrollInfo" style="display: none;">
+                  <p>Klizačem ili dodirom pomaknite vrste riječi ulijevo kako biste ih vidjeli u cijelosti.</p>
+                </div>
+
+              </div>
+              
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <section class="container mb-5 pt-4 pb-2" id="about">
+        <div class="row justify-content-center">
+
+          <!-- Content -->
+          <div class="col-lg-6 col-md-10">
+            <h2>Što je croapi?</h2>
+            <p class="mb-4 pb-2 fs-lg">Croapi je skup alata za razumijevanje prirodnog jezika temeljenih na umjetnoj inteligenciji. Aplikacija Vrste riječi automatski određuje vrste i podvrste riječi u rečenici na hrvatskom jeziku.</p>
+            <p class="mb-4 pb-2 fs-lg">Gramatika hrvatskog jezika definira <strong>deset vrsta riječi</strong> koje se prema sastavu ili obliku dijele na promjenjive i nepromjenjive (Težak i Babić, 2005.).</p>
+            
+            <h2>Promjenjive vrste riječi</h3>
+
+            <ul class="fs-lg">
+              <li class="mb-2">
+                  <strong>IMENICE</strong> su riječi kojima imenujemo bića stvari i pojave,
+                  mijenjaju se po padežima i imaju stalan rod
+                  <i>(čovjek, biljka, riba, staklo, kuća, grad, voda, vatra, jezik, riječ...)</i>
+              </li>
+
+              <li class="mb-2">
+                  <strong>GLAGOLI</strong> su riječi koje izriču radnju, stanje i zbivanje
+                  te se sprežu ili konjugiraju izričući osobu i vrijeme ili način radnje, stanja ili
+                  zbivanja
+                  <i>(plesati, čitati, stvarati, stajati, sjediti, cvjetati, kišiti...)</i>
+              </li>
+
+              <li class="mb-2">
+                  <strong>PRIDJEVI</strong> su riječi koje pobliže označuju imenice, izriču
+                  različita obilježja bića, stvari i pojava te odgovaraju na pitanja koji?,
+                  čiji?, kakav?
+                  <i>(zelen, crven, malen, debeo, blizak, složen, susjedov, novi, hrvatski, zlatan...)</i>
+              </li class="mb-2">
+
+              <li class="mb-2"><strong>ZAMJENICE</strong> su riječi koje zamjenjuju druge riječi, najčešće
+                  imenice i pridjeve
+                  <i>(ja, ti, moj, njezin, sebe, sebi, svoj, tko, što, nitko, nešto...)</i>
+              </li>
+
+              <li class="mb-2">
+                  <strong>BROJEVI</strong> izriču koliko je čega (glavni brojevi) ili koje je što
+                  po redu (redni brojevi) i dolaze uz imenice
+                  <i>(jedan, dva, devet, dvanaest, sto, prvi, drugi, četrnaesti...)</i>
+              </li>
+            </ul>
+
+            <h2>Nepromjenjive vrste riječi</h3>
+            <ul class="fs-lg">
+                <li class="mb-2">
+                    <strong>PRILOZI</strong> su nepromjenjive riječi koje se najčešće dodaju glagolima za
+                    oznaku mjesta, vremena,
+                    načina, uzroka, i drugih okolnosti
+                    <i>(gdje, kamo, ovdje, onamo, svuda, sada, sutra, jučer, ljetos, kako, zašto, stoga...)</i>
+                </li>
+
+                <li class="mb-2">
+                    <strong>PRIJEDLOZI</strong> su nepromjenjive pomoćne riječi koje izriču međusobne
+                    odnose među stvarima i radnjama u rečenici
+                    <i>(u, na, od, do, iz, iza, o, po, pod, nad, uz, kod, oko, zbog, radi...)</i>
+                </li>
+
+                <li class="mb-2">
+                    <strong>VEZNICI</strong> su nepromjenjive pomoćne gramatičke riječi kojima se
+                    povezuju riječi u rečenici ili surečenice u složenim rečenicama
+                    <i>(i, pa, te, ni, niti, a, ali, nego, no, već, ili, čim, da, dakle...)</i>
+                </li>
+
+                <li class="mb-2">
+                    <strong>USKLICI</strong> su nepromjenjive riječi koje služe za izricanje osjećaja,
+                    duševnih raspoloženja, za dozive i poticaje ili za oponašanje prirodnih zvukova
+                    <i>(ah, eh, ih, oh, uh, hej, oho, jao, iš, šic, hop...)</i>
+                </li>
+
+                <li class="mb-2">
+                    <strong>ČESTICE</strong> su nepromjenjive riječi koje služe za oblikovanje ili
+                    preoblikovanje
+                    rečeničnoga ustrojstva, za davanje drugačijega značenja pojedinim riječima ili za
+                    isticanje govornikova stava prema rečeničnom sadržaju
+                    <i>(zar, li, da, ne, evo, eto, eno, neka, na...)</i>
+                </li>
+            </ul>
+
+            <p class="mb-4 pb-2 fs-lg">
+                Riječi koje nisu uspjele biti prepoznate aplikacija svrstava u kategoriju ostalo. Interpunkicjski znakovi će ponekad biti eksplicitno prepoznati.
+            </p>
+            
+            <h2>Komu i čemu je croapi namijenjen?</h2>
+            <p class="mb-4 pb-2 fs-lg">
+                Croapi je zamišljen kao pomoć tijekom učenja i vježbanja vrsta riječi u svim
+                razredima osnovnih pa i srednjih škola te svima koji žele provjeriti zadatke
+                takve vrste. Aplikacija može služiti kao vježba s rješenjima,
+                no treba imati na umu da ni računala nisu savršena pa je moguće da ponekad
+                pogriješe.
+            </p>
+            <p class="mb-4 pb-2 fs-lg">Croapi je tijekom svibnja 2024. eksperimentalno nadograđen velikim jezičnim modelom 
+                kako bi prepoznavao i podvrste riječi (opće i vlastite imenice,
+                opisne i gradivne pridjeve, glagolsko vrijeme i lice, osobne, posvojne,
+                neodređene zamjenice i dr.), ali određivao i rod, broj i padež
+                te druge gramatičke kategorije riječi.
+            </p>
+
+            <h2>Što je veliki jezični model?</h2>
+            <p class="mb-4 pb-2 fs-lg">
+                Veliki jezični model je najnovije postignuće umjetne inteligencije. U osnovi je to kompleksna neuronska mreža 
+                trenirana da za zadani niz riječi predvidi iduću najvjerojatniju riječ. Budući da se tijekom učenja takvih modela 
+                koriste ogromne količine teksta i sofisticirani optimizacijski postupci, model tijekom vremena počinje generirati 
+                smislene nizove riječi za dani upit.
+            </p>
+
+            <h2>Kolika je točnost aplikacije?</h2>
+            <p class="mb-4 pb-2 fs-lg">
+                Trenutno nije poznato koliko je aplikacija točna. Budući da više ne koristi interno 
+                razvijeni model za prepoznavnaje osnovnih vrsta riječi čija je prosječna točnost iznosila 97.4%, potrebno 
+                je obaviti specifične testove kako bi se utvrdila nova točnost. Svi rezultati će biti objavljeni 
+                na ovoj stranici. Aplikaciju je stoga potrebno koristiti na <strong>vlastitu odgovornost</strong>.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- "Empty" pre-footer section -->
+      <section class="position-relative bg-dark pt-lg-4 pt-xl-5" style="background: linear-gradient(90deg, #0b0f19 0%, #172033 51.04%, #0b0f19 100%);">
+              
+        <div class="jarallax position-absolute top-0 start-0 w-100 h-100" data-jarallax data-speed="0.4">
+          <div class="jarallax-img" style="background-image: url(assets/img/landing/saas-5/pricing-bg-pattern.png);"></div>
+        </div>
+        <!--section content here-->
+        <div class="d-none d-xl-block" style="height: 300px;"></div>
+        <div class="d-none d-md-block d-xl-none" style="height: 260px;"></div>
+        <div class="d-md-none" style="height: 230px;"></div>
+        <div class="d-flex position-absolute bottom-0 start-0 w-100 overflow-hidden mb-n1" style="color: var(--si-body-bg);">
+          <div class="position-relative start-50 translate-middle-x flex-shrink-0" style="width: 3774px;">
+            <svg width="3774" height="201" viewBox="0 0 3774 201" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 200.003C0 200.003 1137.52 0.188224 1873.5 0.000134392C2614.84 -0.189325 3774 200.003 3774 200.003H0Z" fill="currentColor"/></svg>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer position-relative zindex-2 pb-3 pb-xl-0">
+      <div class="d-none d-lg-block" style="margin-top: -70px;"></div>
+      <div class="d-none d-md-block d-lg-none" style="margin-top: -100px;"></div>
+      <div class="d-md-none" style="margin-top: -130px;"></div>
+      <div class="container">
+        
+        <div class="row justify-content-center">
+          <!-- About links -->
+          <div class="col-12 pb-sm-2 pb-md-3 mb-4 mb-lg-5 mb-xl-0">
+            <div class="d-flex align-items-center justify-content-center mb-3">
+              <div class="navbar-brand text-dark me-4 pt-0">
+                croapi
+              </div>
+              <div class="d-flex flex-wrap">
+                <ul class="nav flex-row me-3">
+                  <li class="nav-item me-3 mb-1">
+                    <a href="index.html" target="_blank" class="nav-link py-1">Vrste riječi</a>
+                  </li>
+                  <li class="nav-item me-3 mb-1">
+                    <a href="https://croapi.github.io/contact.html" class="nav-link py-1">Kontakt</a>
+                  </li>
+                  <li class="nav-item me-3 mb-1">
+                    <a href="https://croapi.github.io/terms-and-conditions.html" class="nav-link py-1">Uvjeti korištenja</a>
+                  </li>
+                  <li class="nav-item me-3 mb-1">
+                    <a href="https://croapi.github.io/privacy-policy.html" class="nav-link py-1">Politika privatnosti</a>
+                  </li>
                 </ul>
-            </div>
-
-            <div class="top-bar-right">
-                <ul class="dropdown menu" data-dropdown-menu>
-                    <li><a href="http://www.facebook.com/sharer.php?u=https://croapi.github.io/vrste-rijeci/" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-facebook fa-lg"></i></a></li>
-                    <li><a href="https://youtu.be/JCNb81NtgaM" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-youtube fa-lg"></i></a></li>
-                    <!--<li><a href="#">Novosti</a></li>-->
-                    <li><a href="index.html#about">Pitanja i odgovori</a></li>
-                    <li><a href="details.html">Tehnikalije</a></li>
-                    <li><a href="contact.html">Kontakt</a></li>
+                
+                <ul class="nav flex-row">
+                  <li class="nav-item me-3 mb-1">
+                    <a href="https://www.youtube.com/watch?v=JCNb81NtgaM&t=1s" target="_blank" class="nav-link py-1">YouTube</a>
+                  </li>
                 </ul>
+                
+              </div>
             </div>
-        </div>
-    </div>
-    <!--Top bar end-->
-
-    <!--Search container-->
-    <div class="grid-container" id="search-container">
-        <div class="grid-x grid-margin-x align-center">
-            <div class="medium-9 large-6 cell text-center">
-                <h1><span style="color:#1779ba;">Otkrijte</span> vrste riječi<span style="color:#c91b1b">.</span></h1>
-            </div>
+          </div>
         </div>
 
-        <div class="grid-x grid-margin-x align-center">
-            <form class="medium-9 large-6 cell input-group input-group-rounded" id="inputForm">
-                <input type="search" class="input-group-field" id="sentenceInput" placeholder="Unesite rečenicu..." />
-            </form>
+        <div class="text-sm-center pb-3 py-sm-3 py-md-4 py-xl-5">
+          <p class="nav d-block fs-sm mb-0">
+            <span class="text-body">&copy; Sva prava pridržana.</span>
+          </p>
         </div>
 
-        <div class="grid-x grid-margin-x align-center">
-            <div class="medium-10 large-6 cell text-center">
-                <label>Preporuča se korištenje velikog početnog slova i interpunkcije na kraju rečenice.</label>
-            </div>
-        </div>
+      </div>
+    </footer>
 
-        <div class="grid-x grid-margin-x align-center" id="displacyLoader" style="padding-top:2%;">
-            <div class="small-1 meduim-1 large-1 cell">
-                <img src="img/loading_32.gif">
-            </div>
-        </div>
 
-        <div class="grid-x grid-padding-x align-center">
-            <div class="large-8 cell cell-block" id="displacy"></div>
-        </div>
-        <div class="grid-x grid-margin-x align-center" id="scrollInfo">
-            <div class="medium-10 large-6 cell text-center">
-                <label>Klizačem ili dodirom pomaknite vrste riječi ulijevo kako biste ih vidjeli u cijelosti.</label>
-            </div>
-        </div>
-    </div>
-    <!--Search container end-->
+    <!-- Back to top button -->
+    <a href="#top" class="btn-scroll-top" data-scroll>
+      <span class="btn-scroll-top-tooltip text-muted fs-sm me-2">Top</span>
+      <i class="btn-scroll-top-icon bx bx-chevron-up"></i>
+    </a>
 
-    <!--Što je croapi?-->
-    <div class="grid-container" style="padding-top:30%; padding-bottom:25%;">
-        <div class="grid-x grid-margin-x align-center">
-            <div class="medium-8 large-7 cell">
-                <article id="about" style="padding-top:5%;">
-                    <section>
-                        <h2 style="padding-top:5%;">Što je croapi?</h2>
 
-                        <p class="lead">
-                            Croapi je matematički model koji automatski
-                            određuje vrste riječi u rečenici na hrvatskom jeziku.
-                        </p>
-                        <p>
-                            Gramatika hrvatskog jezika definira <strong>deset vrsta riječi</strong> koje se prema
-                            sastavu ili obliku dijele na promjenjive i nepromjenjive (Težak i Babić, 2005.).
-                        </p>
-                        <h2>Promjenjive vrste riječi</h2>
-                        <ul>
-                            <li>
-                                <strong>IMENICE</strong> su riječi kojima imenujemo bića stvari i pojave,
-                                mijenjaju se po padežima i imaju stalan rod
-                                <i>(čovjek, biljka, riba, staklo, kuća, grad, voda, vatra, jezik, riječ...)</i>
-                            </li>
-
-                            <li>
-                                <strong>GLAGOLI</strong> su riječi koje izriču radnju, stanje i zbivanje
-                                te se sprežu ili konjugiraju izričući osobu i vrijeme ili način radnje, stanja ili
-                                zbivanja
-                                <i>(plesati, čitati, stvarati, stajati, sjediti, cvjetati, kišiti...)</i>
-                            </li>
-
-                            <li>
-                                <strong>PRIDJEVI</strong> su riječi koje pobliže označuju imenice, izriču
-                                različita obilježja bića, stvari i pojava te odgovaraju na pitanja koji?,
-                                čiji?, kakav?
-                                <i>(zelen, crven, malen, debeo, blizak, složen, susjedov, novi, hrvatski, zlatan...)</i>
-                            </li>
-
-                            <li><strong>ZAMJENICE</strong> su riječi koje zamjenjuju druge riječi, najčešće
-                                imenice i pridjeve
-                                <i>(ja, ti, moj, njezin, sebe, sebi, svoj, tko, što, nitko, nešto...)</i>
-                            </li>
-
-                            <li>
-                                <strong>BROJEVI</strong> izriču koliko je čega (glavni brojevi) ili koje je što
-                                po redu (redni brojevi) i dolaze uz imenice
-                                <i>(jedan, dva, devet, dvanaest, sto, prvi, drugi, četrnaesti...)</i>
-                            </li>
-                        </ul>
-
-                        <h2>Nepromjenjive vrste riječi</h2>
-                        <ul>
-                            <li>
-                                <strong>PRILOZI</strong> su nepromjenjive riječi koje se najčešće dodaju glagolima za
-                                oznaku mjesta, vremena,
-                                načina, uzroka, i drugih okolnosti
-                                <i>(gdje, kamo, ovdje, onamo, svuda, sada, sutra, jučer, ljetos, kako, zašto, stoga...)</i>
-                            </li>
-
-                            <li>
-                                <strong>PRIJEDLOZI</strong> su nepromjenjive pomoćne riječi koje izriču međusobne
-                                odnose među stvarima i radnjama u rečenici
-                                <i>(u, na, od, do, iz, iza, o, po, pod, nad, uz, kod, oko, zbog, radi...)</i>
-                            </li>
-
-                            <li>
-                                <strong>VEZNICI</strong> su nepromjenjive pomoćne gramatičke riječi kojima se
-                                povezuju riječi u rečenici ili surečenice u složenim rečenicama
-                                <i>(i, pa, te, ni, niti, a, ali, nego, no, već, ili, čim, da, dakle...)</i>
-                            </li>
-
-                            <li>
-                                <strong>USKLICI</strong> su nepromjenjive riječi koje služe za izricanje osjećaja,
-                                duševnih raspoloženja, za dozive i poticaje ili za oponašanje prirodnih zvukova
-                                <i>(ah, eh, ih, oh, uh, hej, oho, jao, iš, šic, hop...)</i>
-                            </li>
-
-                            <li>
-                                <strong>ČESTICE</strong> su nepromjenjive riječi koje služe za oblikovanje ili
-                                preoblikovanje
-                                rečeničnoga ustrojstva, za davanje drugačijega značenja pojedinim riječima ili za
-                                isticanje govornikova stava prema rečeničnom sadržaju
-                                <i>(zar, li, da, ne, evo, eto, eno, neka, na...)</i>
-                            </li>
-                        </ul>
-
-                        <p>
-                            Osim standardnih vrsta riječi, croapi označava kratice i interpunkcijske
-                            znakove. Riječi koje nisu uspjele biti prepoznate svrstava u kategoriju ostalo.
-                        </p>
-
-                    </section>
-
-                    <section>
-                        <h2>Komu i čemu je croapi namijenjen?</h2>
-                        <p>
-                            Croapi je zamišljen kao pomoć tijekom učenja i vježbanja vrsta riječi u svim
-                            razredima osnovnih pa i srednjih škola te svima koji žele provjeriti zadatke
-                            takve vrste. Aplikacija može služiti kao vježba s rješenjima,
-                            no treba imati na umu da ni računala nisu savršena pa je moguće da ponekad
-                            pogriješe.
-                        </p>
-                        <p>Ukoliko će postojati interes, croapi će biti dalje usavršavan
-                            kako bi što točnije prepoznavao i podvrste riječi (npr. opće i vlastite imenice,
-                            opisne i gradivne pridjeve, nesvršene i svršene glagole, osobne, posvojne,
-                            neodređene zamjenice itd.), ali i određivao rod, broj, padež,
-                            lice i druge gramatičke kategorije.
-                        </p>
-
-                        <h2>Kolika je točnost modela?</h2>
-                        <p>
-                            Croapi u prosjeku točno otkriva vrste riječi u <strong>97,45%</strong> slučajeva.
-                            Točnost modela nad riječima koje nikad nije vidio tijekom učenja trenutno iznosi
-                            <strong>92%</strong>.
-                            U budućnosti će se model poboljšavati kako bi točnost bila veća. Detaljnije performanse
-                            za svaku pojedinu vrstu riječi dostupne su
-                            <a href="details.html" target="_blank" rel="noopener noreferrer">ovdje</a>.
-                        </p>
-
-                        <h2>Koristi li model neku vrstu rječnika?</h2>
-                        <p>
-                            Ne u klasičnom smislu. Model je tijekom faze učenja "vidio" razne riječi iz ograničenog
-                            skupa tekstova u kojima su vrste riječi unaprijed označene pa u tom smislu možemo govoriti
-                            o rječniku. Međutim, broj jedinstvenih oblika riječi koje je model tijekom učenja imao
-                            na raspolaganju mnogo je manji od ukupnog broja i oblika riječi u hrvatskom standardnom
-                            jeziku. Unatoč tome, model je sposoban određivati vrstu i za riječi koje nikad nije vidio. 
-                            Vanjske baze označenih riječi i tvorbi nisu korištene.
-                        </p>
-                        <p>
-                            Riječi nisu bile jedine ulazne značajke iz kojih je model učio. Ono što je model naučio
-                            algoritmom strojnog učenja su matematička pravila pomoću kojih pokušava predvidjeti vrstu
-                            riječi neovisno o tome
-                            nalazi li se ona u tekstovima iz kojih je učio ili ne.
-                        </p>
-                    </section>
-                </article>
-            </div>
-        </div>
-    </div>
-
+    <!-- Vendor Scripts -->
+    <script src="assets/vendor/jarallax/dist/jarallax.min.js"></script>
+    <!--
+    <script src="assets/vendor/@lottiefiles/lottie-player/dist/lottie-player.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/lightgallery/lightgallery.min.js"></script>
+    <script src="assets/vendor/lightgallery/plugins/video/lg-video.min.js"></script>
+    <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="assets/vendor/shufflejs/dist/shuffle.min.js"></script>
+    -->
+    
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/displacy.js"></script>
+    <!--<script src="js/displacy.js"></script>-->
     <script src="js/app.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?forceLang=hr&theme=grey&tracking=1&noGeoIp=1&showNoConsent=1&hideDetailsBtn=1"></script>
-</body>
 
+    <!-- Main Theme Script -->
+    <script src="assets/js/theme.min.js"></script>
+  </body>
 </html>
