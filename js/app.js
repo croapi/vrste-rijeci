@@ -107,7 +107,7 @@ function doPOSTagNew() {
     
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:5002/croapi/get-predictions",
+        url: "https://scentalytics.com/croapi/get-predictions",
         data: JSON.stringify({
             "sentence": inputSentence
         }),
