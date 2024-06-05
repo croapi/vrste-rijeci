@@ -250,7 +250,8 @@
                 
                 <!-- Post-instructions text -->
                 <div class="mt-2" id="scrollInfo" style="display: none;">
-                  <p>Klizačem ili dodirom pomaknite vrste riječi ulijevo kako biste ih vidjeli u cijelosti.</p>
+                  <p class="mb-0">Klizačem ili dodirom pomaknite vrste riječi ulijevo kako biste ih vidjeli u cijelosti.</p>
+                  <p>Neke riječi su pogrešno određene? <a href="" data-bs-toggle="modal" data-bs-target="#reportErrorModal">Prijavi pogrešku</a></p>
                 </div>
 
               </div>
@@ -260,6 +261,38 @@
           </div>
         </div>
       </section>
+
+      <!-- Prijavi pogrešku Modal markup -->
+      <div class="modal fade" tabindex="-1" role="dialog" id="reportErrorModal">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title">Prijavi pogrešku</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+              <form class="tab-pane fade show active" autocomplete="off" id="prijavi-pogresku-form">
+                <div class="mb-3">
+                  <label class="form-label" for="currentSentence">Rečenica</label>
+                  <input class="form-control" type="text" id="currentSentence">
+                </div>
+
+                <div class="mb-3">
+                  <label class="form-label" for="error-description">Opis greške</label>
+                  <textarea class="form-control" id="error-description" rows="3"></textarea>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Zatvori</button>
+              <button type="button" class="btn btn-primary btn-sm" id="report-error-button">Pošalji</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <section class="container mb-5 pt-4 pb-2" id="about">
         <div class="row justify-content-center">

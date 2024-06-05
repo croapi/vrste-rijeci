@@ -95,6 +95,15 @@ function renderPredictions(predictions) {
     predictionsWrapper.style.display = 'block';
 }
 
+var errorReport = {
+    'predictions': [],
+    'sentence': '',
+    'description': ''
+};
+
+let baseURL = 'https://scentalytics.com'; //'http://127.0.0.1:5002';
+let apiKey = 'TwWmLpW0Xj9Kkheo5UpHB6c01ZR7RxAd3BZyfLmS';
+
 function doPOSTagNew() {
 
     inputSentence = $('#sentenceInput').val().trim();
@@ -107,20 +116,25 @@ function doPOSTagNew() {
     
     $.ajax({
         type: "POST",
-        url: "https://scentalytics.com/croapi/get-predictions",
+        //url: "/croapi/get-predictions",
+        url: baseURL + "/croapi/get-predictions",
         data: JSON.stringify({
             "sentence": inputSentence
         }),
         contentType: "application/json",
         dataType: "json",
         headers: {
-            'X-Api-Key': 'TwWmLpW0Xj9Kkheo5UpHB6c01ZR7RxAd3BZyfLmS'
+            'X-Api-Key': apiKey
         },
         success: function(data, textStatus, jqXHR) {
             predictions = data['predictions'];
             renderPredictions(predictions);
             $('#sentenceInput').trigger("blur");
+            $('#currentSentence').val(inputSentence);
+            $('#error-description').val('');
             $('#scrollInfo').show();
+            errorReport['predictions'] = data['predictions']['words'];
+
         },
         error: function() {
             alert('Došlo je do pogreške. Molimo pokušajte ponovo.');
@@ -131,6 +145,30 @@ function doPOSTagNew() {
     });
     return false; // very important
 };
+
+$('#report-error-button').on('click', function() {
+
+    errorReport['sentence'] = $('#currentSentence').val();
+    errorReport['description'] = $('#error-description').val();
+    
+    $.ajax({
+        type: "POST",
+        url: baseURL + "/croapi/report-error",
+        data: JSON.stringify(errorReport),
+        contentType: "application/json",
+        dataType: "json",
+        headers: {
+            'X-Api-Key': apiKey
+        },
+        error: function() {
+            alert('Došlo je do pogreške. Molimo pokušajte ponovo.');
+        },
+        complete: function() {
+            $('#reportErrorModal').modal('hide');
+        }
+    });
+    
+});
 
 //$('#postag').click(doPOSTag);
 
