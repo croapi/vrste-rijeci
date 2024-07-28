@@ -12,7 +12,7 @@ function doPOSTag() {
     $('#displacyLoader').show();
 
     inputSentence = $('#sentenceInput').val();
-    
+
     $.ajax({
         type: "POST",
         url: "https://y23blf12y4.execute-api.eu-central-1.amazonaws.com/prod/pos",
@@ -67,10 +67,10 @@ function renderPredictions(predictions) {
     predictionsBody.empty();
 
     $.each(predictions.words, function(i, word) {
-        
+
         let word_text = word.text;
         let word_tags = word.tag.split('\n');
-        
+
         var word_type = 'OSTALO';
         if (word_tags.length > 0) {
             word_type = word_tags[0];
@@ -84,7 +84,7 @@ function renderPredictions(predictions) {
         var row = $(`<div class="col-4" style="display: inline-block; float: none; color: ${color};"></div>`);
 
         row.append(`<div>` + word_text + `</div>`);
-        
+
         $.each(word_tags, function(j, tag) {
             row.append(`<div>` + tag + `</div>`);
         });
@@ -113,7 +113,7 @@ function doPOSTagNew() {
     }
 
     $('#displacyLoader').show();
-    
+
     $.ajax({
         type: "POST",
         //url: "/croapi/get-predictions",
@@ -150,7 +150,7 @@ $('#report-error-button').on('click', function() {
 
     errorReport['sentence'] = $('#currentSentence').val();
     errorReport['description'] = $('#error-description').val();
-    
+
     $.ajax({
         type: "POST",
         url: baseURL + "/croapi/report-error",
@@ -167,7 +167,7 @@ $('#report-error-button').on('click', function() {
             $('#reportErrorModal').modal('hide');
         }
     });
-    
+
 });
 
 //$('#postag').click(doPOSTag);
